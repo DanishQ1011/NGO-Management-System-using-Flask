@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Donation Info
+{% endblock title %}
+
+{% block body %}
+{% with messages=get_flashed_messages(with_categories=true) %}
+{% if messages %}
+{% for category, message in messages %}
+
+<div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
+    {{message}}
+
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+
+  {% endfor %}
+  {% endif %}
+  {% endwith %}
+<br>
+<center><h4>-------- ITEMS DONATED SO FAR --------</h4></center>
+  <div class="container mt-4">
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">ITEM ID</th>
+      <th scope="col">ITEM NAME</th>
+      <th scope="col">QUANTITY</th>
+      <th scope="col">DONATION DATE</th>
+ 
+    </tr>
+  </thead>
+  <tbody>
+  {% for post in posts %}
+    <tr>
+      <th scope="row">{{post.iid}}</th>
+      <td>{{post.item_name}}</td>
+      <td>{{post.quantity}}</td>
+      <td>{{post.donation_date}}</td>
+
+    </tr>
+{% endfor %}
+  
+  </tbody>
+</table>
+</div>
+</div>
+
+{% endblock body %}

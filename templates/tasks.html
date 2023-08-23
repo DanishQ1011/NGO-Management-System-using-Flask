@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Tasks
+{% endblock title %}
+
+{% block body %}
+{% with messages=get_flashed_messages(with_categories=true) %}
+{% if messages %}
+{% for category, message in messages %}
+
+<div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
+  {{message}}
+
+<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+  <span aria-hidden="true">&times;</span>
+</button>
+</div>
+
+{% endfor %}
+  {% endif %}
+  {% endwith %}
+<br>
+<center><h4>-------- TASKS ASSIGNED --------</h4></center>
+  <div class="container mt-4">
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">TASK</th>
+      <th scope="col">TASK DESCRIPTION</th>
+      <th scope="col">TASK LEADER</th>
+      <th scope="col">TASK ASSIGNED ON:</th>
+      <th scope="col">UPDATE</th>
+      <th scope="col">COMPLETION</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for post in posts %}
+    <tr>
+      <th scope="row">{{post.tid}}</th>
+      <td>{{post.task_description}}</td>
+      <td>{{post.task_leader}}</td>
+      <td>{{post.task_assigned_on}}</td>
+    <td><a href="/edit/{{post.tid}}"><button class="button">Edit </button></a></td>
+    <td><a href="/delete/{{post.tid}}"><button onclick="return confirm('Are you sure the task is completed?');"class="button">Completed </button> </a> </td>
+    </tr>
+{% endfor %}
+  
+  </tbody>
+</table>
+</div>
+
+{% endblock body %}

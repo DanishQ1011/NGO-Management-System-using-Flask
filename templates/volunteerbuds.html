@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Volunteer Buddies
+{% endblock title %}
+
+{% block body %}
+{% with messages=get_flashed_messages(with_categories=true) %}
+{% if messages %}
+{% for category, message in messages %}
+
+<div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
+    {{message}}
+
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+
+  {% endfor %}
+  {% endif %}
+  {% endwith %}
+<br>
+<center><h4>-------- KNOW YOUR VOLUNTEERS --------</h4></center>
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">VID</th>
+      <th scope="col">NAME</th>
+      <th scope="col">EMAIL</th>
+      <th scope="col">PHONE</th>
+      <th scope="col">AGE</th>
+      <th scope="col">OCCUPATION</th>
+      <th scope="col">DATE OF JOINING</th>     
+    </tr>
+  </thead>
+  <tbody>
+  {% for post in query %}
+    <tr>
+      <th scope="row">{{post.vid}}</th>
+      <td>{{post.name}}</td>
+      <td>{{post.email}}</td>
+      <td>{{post.phone_no}}</td>
+      <td>{{post.age}}</td>
+      <td>{{post.occupation}}</td>
+      <td>{{post.doj}}</td>
+    </tr>
+{% endfor %}
+  
+  </tbody>
+</table>
+
+
+{% endblock body %}

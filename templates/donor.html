@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Donors
+{% endblock title %}
+
+{% block body %}
+<body class="donorbg">
+  <div class="credbg">
+<div class="container">
+
+<div class="row">
+
+<div class="col-md-4"></div>
+<div class="col-md-4">
+{% with messages=get_flashed_messages(with_categories=true) %}
+{% if messages %}
+{% for category, message in messages %}
+
+<div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
+    {{message}}
+
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+
+  {% endfor %}
+  {% endif %}
+  {% endwith %}
+<br>
+<h2 class="text-center text-white bg-dark">Donate Money</h2>
+<center><h4>Enter your bank item details</h4></center>
+
+<br>
+<form action="/donors" method="post" class="jumbotron">
+
+<div class="form-group">
+
+<input type="text" class="form-control" name="bank" placeholder="Bank" required>
+
+</div>
+
+<div class="form-group">
+
+<input type="text" class="form-control" name="ifsc_code" placeholder="IFSC_Code" required>
+
+</div>
+
+
+<div class="form-group">
+
+<input type="text" class="form-control" name="account" placeholder="Account Number" required>
+
+</div>
+
+<div class="form-group">
+
+  <input type="text" class="form-control" name="amount" placeholder="Amount" required>
+  
+  </div>
+
+
+  <center><button type="submit" class="loginbutton"><span class="label">Submit</span>
+    <span class="icon">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"></path><path fill="currentColor" d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"></path></svg>
+    </span>
+  </button></center>
+
+</form>
+
+</div>
+<div class="col-md-4"></div>
+
+</div>
+</div>
+</div>
+</body>
+{% endblock body %}
